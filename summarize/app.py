@@ -20,4 +20,9 @@ if file is not None:
 else:
     text_from_pdf = ""
 text = st.text_area("Or paste your text here:", height=200 , value=text_from_pdf)
-st.button("Summarize")
+if st.button("Summarize"):
+    if len(text.strip()) < 10:
+        st.warning("Please enter at least 10 characters of text to summarize.")
+    else:
+        with st.spinner("Generating summary..."):
+            arabic_letters = sum(1 for char in text if '\u0600' <= char <= '\u06FF')
