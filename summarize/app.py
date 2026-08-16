@@ -26,3 +26,12 @@ if st.button("Summarize"):
     else:
         with st.spinner("Generating summary..."):
             arabic_letters = sum(1 for char in text if '\u0600' <= char <= '\u06FF')
+            lang = "Arabic" if arabic_letters > 10 else "English"
+            response = client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": f"you are a helpful assistant, summarize the text into 4 simple sentences, in {lang} language."},
+                    {"role": "user", "content": text}
+                ]
+            )
+            st.success(response.choices[0].message.content)
