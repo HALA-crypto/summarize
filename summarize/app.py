@@ -30,7 +30,7 @@ if st.button("Summarize"):
             response = client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
-                    {"role": "system", "content": f"you are a helpful assistant, summarize the text into 4 simple sentences, in {lang} language."},
+                    {"role": "system", "content": f"you are a helpful assistant, summarize the text into 3 simple sentences, in {lang} language."},
                     {"role": "user", "content": text}
                 ]
             )
